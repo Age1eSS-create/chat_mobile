@@ -1,0 +1,48 @@
+{
+  "name": "AwesomeProject",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@eva-design/eva": "^2.1.1",
+    "@react-native-masked-view/masked-view": "^0.2.6",
+    "@react-navigation/stack": "^6.1.1",
+    "@ui-kitten/components": "^5.1.1",
+    "react": "17.0.2",
+    "react-native": "0.67.3",
+    "react-native-document-picker": "^8.0.0",
+    "react-native-file-download": "^0.0.10",
+    "react-native-file-picker": "^0.0.21",
+    "react-native-fs": "^2.19.0",
+    "react-native-gesture-handler": "^2.3.2",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-router-native": "^6.2.2",
+    "socket.io-client": "^4.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.7",
+    "@babel/runtime": "^7.17.7",
+    "@react-native-community/eslint-config": "^3.0.1",
+    "babel-jest": "^27.5.1",
+    "eslint": "^8.11.0",
+    "jest": "^27.5.1",
+    "jetifier": "^2.0.0",
+    "js-yaml": "^4.1.0",
+    "jsesc": "^3.0.2",
+    "metro": "^0.69.1",
+    "metro-react-native-babel-preset": "^0.69.1",
+    "mime": "^3.0.0",
+    "react-test-renderer": "17.0.2",
+    "regjsparser": "^0.8.4",
+    "resolve": "^1.22.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
