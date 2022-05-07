@@ -8,8 +8,6 @@ import { NativeRouter, Route, Link, useParams } from "react-router-native";
 import { Input, ApplicationProvider, Button } from "@ui-kitten/components";
 import * as DocumentPicker from 'react-native-document-picker'
 import { requestHundler } from '../requestHundler/requestHundler'
-// import {RNFS} from 'react-native-fs'
-// var RNFS = require('react-native-fs');
 const RNFS = require('react-native-fs')
 const ENDPOINT = "http://10.0.2.2:3000"
 const socket = socketIOClient(ENDPOINT)
@@ -45,9 +43,7 @@ export default function PrivateChat({ user , flag , setFlag }) {
   useEffect(() => {
     if (result) {
       const body = new FormData()
-      console.log(result[0])
       body.append('file', result[0])
-      console.log(body)
       fetch(ENDPOINT + '/upload', {
         method: 'POST',
         headers: {
@@ -56,7 +52,6 @@ export default function PrivateChat({ user , flag , setFlag }) {
         body: body
       }).then(response => { response.json() })
         .then(data => {
-          console.log("DATA --  ", data)
           socket.emit('private message', { text: 0, user_id: 0, date: new Date(), room_id: id })
           getMessages()
         })
@@ -86,12 +81,10 @@ export default function PrivateChat({ user , flag , setFlag }) {
     let fileName = url.split('/')
     fileName = fileName[fileName.length - 1]
     const u = ENDPOINT + '/' + fileName + '/' + 'download'
-    console.log(`${RNFS.DownloadDirectoryPath}/1-${fileName}`)
     RNFS.downloadFile({
       fromUrl: u,
       toFile: `${RNFS.DownloadDirectoryPath}/1${fileName}`,
     }).promise.then((r) => {
-      console.log(r)
     });
   }
 
@@ -114,23 +107,21 @@ export default function PrivateChat({ user , flag , setFlag }) {
                       ? require("../img/teacher.png")
                       : require("../img/student.png")
                   }
-                  style={{ width: 30, height: 30, borderRadius: 10 }}
+                  style={styles.img}
                 />
                 <Text>{item.name}</Text>
               </View>
               {item.file === 'null' || item.file === null ? <Text>{item.text}</Text> : <Text style={{color:'blue'}} onPress={e => onDownloadImagePress(ENDPOINT + item.file)}>{item.file.split('/')[2]}</Text>}
-              <Text style={{textAlign:'right', fontSize:10}}>{(item.date.split('T')[1].split(':')[0]) + ":" + (item.date.split('T')[1].split(':')[1])}</Text>
+              <Text style={styles.date}>{(item.date.split('T')[1].split(':')[0]) + ":" + (item.date.split('T')[1].split(':')[1])}</Text>
             </View>
           ))}
         </ScrollView>
         <View style={styles.form}>
           <TouchableOpacity style={styles.uploadFile} onPress={selectFile}>
-            <Image source={require("../img/file.png")} style={{ width: 30, height: 30, borderRadius: 10 }} />
+            <Image source={require("../img/file.png")} style={styles.img} />
           </TouchableOpacity>
           <Input value={msg} onChangeText={e => setMsg(e)} onBlur={sendMessage} style={{width: "100%"}}  onFocus={e => setFlag(true)}/>
         </View>
-        {/* <Input type="file" onChange={saveFile} /> */}
-        {/* <Button onClick={uploadFile}>Upload</Button> */}
       </View>
     </KeyboardAvoidingView>
   );
@@ -181,7 +172,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  uploadFile: {
-
+  img: {
+    width: 30, 
+    height: 30, 
+    borderRadius: 10
+  },
+  date: {
+    textAlign:'right', 
+    fontSize:10
   }
 });
