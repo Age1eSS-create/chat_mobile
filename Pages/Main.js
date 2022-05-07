@@ -9,8 +9,6 @@ import DocumentPicker, {
     types,
   } from 'react-native-document-picker'
 import { Input , ApplicationProvider , Button  } from "@ui-kitten/components";
-// import * as eva from "@eva-design/eva";
-// import { BottomNavigation , BottomNavigationTab  } from "@ui-kitten/components";
 import { NativeRouter, Route, Link , Routes } from "react-router-native";
 import Friends from "./Friends"
 import PublicChat from "./PublicChat"
@@ -31,9 +29,6 @@ export default function Main({ user , setUser }) {
         <View style={{...styles.menu , paddingTop: flag?18:0}}>
             <Link to='/'><Text style={styles.menuText}>Консультации</Text></Link>
             <Link to='/chat'><Text style={styles.menuText}>Общий чат</Text></Link>
-            {/* <Link to='/chat'><Text style={styles.menuText}>Общий чат</Text></Link> */}
-          {/* <BottomNavigationTab title="Студенты" ><Link to='/'/></BottomNavigationTab>
-          <BottomNavigationTab title="Общий чат" ><Link to='/chat'/> </BottomNavigationTab> */}
         </View>
       </View>
     </NativeRouter>
