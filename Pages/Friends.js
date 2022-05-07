@@ -12,7 +12,6 @@ import { requestGet } from '../requestHundler/requestHundler'
 const ENDPOINT = "http://10.0.2.2:3000"
 
 export default function Friends({user , setUser  }) {
-  // const [user, setUser] = useState(0)
   const [friends, setFriend] = useState([])
   const infoUser = (data) => {
     setUser(data)
@@ -26,7 +25,7 @@ export default function Friends({user , setUser  }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={{ textAlign: "center" }}>Консультации</Text>
+        <Text>Консультации</Text>
       </View>
       <View style={styles.friends}>
         {friends.map((item, id) => (
@@ -35,7 +34,7 @@ export default function Friends({user , setUser  }) {
               <View style={styles.linkContent}>
                 <Image
                   source={item.type === 0 ? (item.gender == "male" ? require("../img/teacher.png") : require("../img/teacherW.png") ) :(item.gender=='male' ? require("../img/student.png") : require("../img/studentW.png") )}
-                  style={{ width: 50, height: 50, borderRadius: 50 }}
+                  style={styles.img}
                   size="giant"
                 />
                 <Text>{item.name}</Text>
@@ -93,4 +92,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  img: {
+    width: 50, 
+    height: 50, 
+    borderRadius: 50
+  }
 });
