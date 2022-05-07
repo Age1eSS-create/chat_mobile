@@ -30,17 +30,9 @@ export default function PublicChat({ user , flag , setFlag}) {
 
   const sendMessage = (e) => {
     setFlag(false)
-    // e.preventDefault()
-    // const socket = socketIOClient(ENDPOINT);
     socket.emit('chat message', { user_id: user.id, text: msg, date:new Date() , room_id:0 , type:user.type })
     setMsg('')
   }
-  // const messages = [
-  //   { name: "Name1", text: "Привет, как дела?", id: 1 },
-  //   { name: "Student1", text: "Все плохо", id: 2 },
-  //   { name: "Student2", text: "da ((((", id: 3 },
-  // ];
-  // {item.type === 0 ? (item.gender == "male" ? require("../img/teacher.png") : require("../img/teacherW.png") ) :(item.gender=='male' ? require("../img/student.png") : require("../img/studentW.png") )}
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={styles.header}>
@@ -57,12 +49,12 @@ export default function PublicChat({ user , flag , setFlag}) {
                       ? (item.gender == "male" ? require("../img/teacher.png") : require("../img/teacherW.png") )
                       : (item.gender=='male' ? require("../img/student.png") : require("../img/studentW.png") )
                   }
-                  style={{ width: 30, height: 30, borderRadius: 10 }}
+                  style={styles.img}
                 />
                 <Text>{item.name}</Text>
               </View>
               <Text>{item.text}</Text>
-              <Text style={{textAlign:'right', fontSize:10}}>{(item.date.split('T')[1].split(':')[0]) + ":" + (item.date.split('T')[1].split(':')[1])}</Text>
+              <Text style={styles.date}>{(item.date.split('T')[1].split(':')[0]) + ":" + (item.date.split('T')[1].split(':')[1])}</Text>
             </View>
           ))}
         </ScrollView>
@@ -117,5 +109,14 @@ const styles = StyleSheet.create({
   messageHead : {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  img: {
+    width: 30, 
+    height: 30, 
+    borderRadius: 10,
+  },
+  date: {
+    textAlign:'right', 
+    fontSize:10,
   }
 });
