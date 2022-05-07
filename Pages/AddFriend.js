@@ -17,8 +17,6 @@ export default function AddFriend({ user , setUser }) {
 
 
     const callbackAdd = (data) => {
-        console.log(data.length)
-        console.log( user.friends.length)
         let tmpUsers = []
         for (let i = 0 ; i < data.length ; i++ ) {
             let flag = true
@@ -45,14 +43,14 @@ export default function AddFriend({ user , setUser }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={{ textAlign: "center" }}>Пользователи</Text>
+                <Text>Пользователи</Text>
             </View>
             <View style={styles.friends}>
                 {users.map((item, id) => (
                     <View style={styles.friend}>
                         <Image
                                 source={item.type === 0 ? (item.gender == "male" ? require("../img/teacher.png") : require("../img/teacherW.png") ) :(item.gender=='male' ? require("../img/student.png") : require("../img/studentW.png") )}
-                                style={{ width: 50, height: 50, borderRadius: 50 }}
+                                style={styles.img}
                                 size="giant"
                             />
                             <Text>{item.name}</Text>
@@ -99,4 +97,9 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
     },
+    img : {
+        width: 50, 
+        height: 50, 
+        borderRadius: 50
+    }
 });
