@@ -1,4 +1,6 @@
 ## react-native chat
+
+React Native
 ## Installation
  ```
 Using npm: npm install
